@@ -11,7 +11,7 @@ const CreateCard = props => {
         <div id="createCard">
             <div className="row justify-center">
                 <div className="col-sm-4">
-                    <div className="card shadow" style={{width:"18rem"}}>
+                    <div className="card" style={{width:"18rem",borderRadius:"10px"}}>
                         <img src={AddImage} className="card-img-top"/>
                         <div className="card-body text-center">
                             <h4 className="card-tittle">Card Title</h4>

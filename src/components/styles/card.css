@@ -1,9 +1,17 @@
 #card{
     margin-left: 330px;
-    margin-top: -505px;
+    margin-top: -487px;
     margin-right: 40px;
 }
 
 .card{
     margin-bottom: 20px;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.9);
+    transition: 0.5s ease;
+    cursor: pointer;
+}
+
+.card:hover{
+    transform: scale(1.04);
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.6);
 }

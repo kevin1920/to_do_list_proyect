@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import {Helmet} from 'react-helmet'
 import Welcome from '../components/welcome'
 import CreateCard from '../components/createCard'
 import FormNewProject from '../components/formNewProject'
@@ -20,7 +21,11 @@ const Projects = () => {
 
     return(
         
-        <div className="Projects">
+        <div>
+            <Helmet>
+                <style>{"body { background-color: #282c34; }"}</style>
+            </Helmet>
+
             <div style={{height: `150px`, overflow: `hidden`}} ><svg viewBox="0 0 500 150" preserveAspectRatio="none" style={{height: `100%`, width: `100%`}}><path d="M-37.02,203.57 C42.55,6.23 416.70,140.43 492.32,14.10 L500.22,0.30 L-3.15,-6.60 Z" style={{stroke: `none`, fill: `#fff`}}></path></svg></div>
 
             <Welcome
