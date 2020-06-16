@@ -18,15 +18,15 @@ const Login = () => {
 
     return (
 
-        <div class="card">
+        <div className="card">
             <div class="card-body">
             <h1>Login</h1>
             <form onSubmit={handleSubmit}>
-                <div class="form-group">
+                <div className="form-group">
                     <label for="email">Email</label>
                     <input type="email" class="form-control" placeholder="Enter you email" name="txtEmail" onChange={handleChange} value={state.txtEmail}></input>
                 </div>
-                <div class="form-group">
+                <div className="form-group">
                     <label for="password">Password</label>
                     <input type="password" class="form-control" placeholder="Enter you password" name="txtPassword" onChange={handleChange} value={state.txtPassword} ></input>
                 </div>
