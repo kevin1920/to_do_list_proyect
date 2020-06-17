@@ -1,12 +1,40 @@
-import React, {useState} from 'react'
-import TaskDescription from '../components/taskDescription'
+import React, {useState,useEffect} from 'react'
+import TaskDescription from './taskDescription'
+import AssignTask from './assignTask'
 
 const ListTask = () => {
 
+    let listTask = [{name:'change the color',description:'color should be changed',charge:""},{name:'change the background',description:'the background is very ugly',charge:""}]
+
     const [stateDetails,setStateDetails] = useState(false)
+    const [description,setDescription] = useState(null)
+    const [stateAssign,setStateAssign] = useState(false)
+
+    let renderList = (task,index) => {
+        return(
+            <tr key={index}>
+                <th>{task.name}</th>
+                <td><button type="button" class="btn btn-primary" onClick={() => catchDescription(index)}>Details</button></td>
+                <td><button type="button" class="btn btn-primary">Modify</button></td>
+                <td><button type="button" class="btn btn-primary">Delete</button></td>
+                <td><button type="button" class="btn btn-primary" onClick={() => setStateAssign(true)}>Assign</button></td>
+                <th></th>
+                <td><input type="checkbox"/></td>
+            </tr>
+        )
+    }
+
+    let catchDescription = (index) => {
+        setStateDetails(true)
+        setDescription(listTask[index].description)
+    }
 
     let handleCloseDetails = () => {
         setStateDetails(false)
+    }
+
+    let handleCloseAssign = () => {
+        setStateAssign(false)
     }
 
     return(
@@ -26,22 +54,19 @@ const ListTask = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                        <th>Create the table</th>
-                        <td><button type="button" class="btn btn-primary" onClick={() => setStateDetails(true)}>Details</button></td>
-                        <td><button type="button" class="btn btn-primary">Modify</button></td>
-                        <td><button type="button" class="btn btn-primary">Delete</button></td>
-                        <td><button type="button" class="btn btn-primary">Assign</button></td>
-                        <th></th>
-                        <td><input type="checkbox"/></td>
-                        </tr>
+                        {listTask.map(renderList)}
                     </tbody>
                 </table>
             </div>
             <TaskDescription
                 isOpen = {stateDetails}
                 onChance = {handleCloseDetails}
-                info = "Description"
+                info = {description}
+            />
+            <AssignTask
+                isOpen = {stateAssign}
+                onChance = {handleCloseAssign}
+                list = {[{name:'Juan'},{name:'Pepito'},{name:'Felipongo'}]}
             />
         </div>
     )
