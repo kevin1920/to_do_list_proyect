@@ -3,9 +3,12 @@ import {Modal,ModalHeader,ModalBody} from 'reactstrap'
 
 const ModifyTask = props => {
 
-    let {isOpen,onChance,task,index} = props
+    let {isOpen,onChance,task} = props
 
-    const [state,setState] = useState({})
+    const [state,setState] = useState({
+        txtNewTaskName:task.name,
+        txtNewDescription:task.description
+    })
 
     let list = JSON.parse(localStorage.getItem('list'))
 
@@ -18,7 +21,10 @@ const ModifyTask = props => {
 
     let handleSubmit = e => {
         e.preventDefault()
-        console.log(state)
+        list[task.index].name = state.txtNewTaskName
+        list[task.index].description = state.txtNewDescription
+        localStorage.setItem('list',JSON.stringify(list))
+        onChance()
     }
 
     return(
@@ -33,11 +39,11 @@ const ModifyTask = props => {
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="task name">task name</label>
-                        <input type="text" className="form-control" placeholder="Enter the new task name" name="txtTaskName" onChange={handleChance} defaultValue={task.name} ></input>
+                        <input type="text" className="form-control" placeholder="Enter the new task name" name="txtNewTaskName" onChange={handleChance} defaultValue={task.name} ></input>
                     </div>
                     <div className="form-group">
                         <label htmlFor="project description">task description</label>
-                        <textarea className="form-control" placeholder="Enter the new task description" name="txtDescription" onChange={handleChance} defaultValue={task.description} ></textarea>
+                        <textarea className="form-control" placeholder="Enter the new task description" name="txtNewDescription" onChange={handleChance} defaultValue={task.description} ></textarea>
                     </div>
                     <button type="submit" className="btn btn-primary">Modify</button>
                 </form>
