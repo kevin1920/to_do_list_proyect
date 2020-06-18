@@ -1,11 +1,28 @@
-import React from 'react'
+import React,{useState} from 'react'
 import {Modal,ModalHeader,ModalBody} from 'reactstrap'
 
 
 const FormNewProject = props => {
 
-    let {isOpen,onChange} = props
+    let {isOpen,onChange,data} = props
+    const [state,setState] = useState({})
 
+    let handleChange = e => {
+        setState({
+            ...state,
+            [e.target.name]:e.target.value
+        })
+    }
+
+    let handleSubmit = e => {
+        e.preventDefault()
+        let projectNew = {name:state.txtProjectName,description:state.txtDescription}
+        let list = data
+        list.push(projectNew)
+        localStorage.setItem('projects',JSON.stringify(list))
+        console.log(list)
+        onChange()
+    }
 
     return (
         <Modal isOpen={isOpen} style={{marginTop:"250px"}}>
@@ -18,14 +35,14 @@ const FormNewProject = props => {
                 </button>
             </ModalHeader>
             <ModalBody>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <label for="project's name">project's name</label>
-                        <input type="text" class="form-control" placeholder="Enter the project name" name="txtProjectName"></input>
+                        <label htmlFor="project's name">project's name</label>
+                        <input type="text" className="form-control" placeholder="Enter the project name" name="txtProjectName" onChange={handleChange}></input>
                     </div>
                     <div className="form-group">
-                        <label for="project description">project description</label>
-                        <textarea className="form-control" placeholder="Enter the project description"></textarea>
+                        <label htmlFor="project description">project description</label>
+                        <textarea className="form-control" placeholder="Enter the project description" name="txtDescription" onChange={handleChange} ></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Create</button>
                 </form>

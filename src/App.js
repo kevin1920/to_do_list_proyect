@@ -9,7 +9,7 @@ import Board from './pages/board'
 function App() {
   return (
     <BrowserRouter>
-      <Route exact path="/" component={Projects}/>
+      <Route exact path="/" component={Login}/>
       <Route exact path="/projects" component={Projects}/>
     </BrowserRouter>
   );

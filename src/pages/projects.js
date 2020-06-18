@@ -8,8 +8,11 @@ import '../components/styles/projects.css'
 
 const Projects = () => {
    
-    const [stateButton,setStateButton] = useState(false)
+    //localStorage.setItem('projects',JSON.stringify([{name:'calculator',description:'a calculator is going to be built'},{name:'the users list',description:'a list is going to be built'}]))
+    let projects = JSON.parse(localStorage.getItem('projects'))
 
+    const [stateButton,setStateButton] = useState(false)
+    const [data,setData] = useState(projects)
 
     let handleButton = () => {
         setStateButton(true)
@@ -37,8 +40,11 @@ const Projects = () => {
             <FormNewProject
                 onChange = {handleBtnClose}
                 isOpen = {stateButton}
+                data = {data}
             />
-            <Card/>
+            <Card
+                data = {data}
+            />
         </div>
         
     )
