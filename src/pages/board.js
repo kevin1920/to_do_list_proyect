@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {Helmet} from 'react-helmet'
 import Nav from '../components/nav'
 import ListTask from '../components/listTask'
@@ -7,15 +7,7 @@ import NewTask from '../components/newTask'
 
 const Board = () => {
 
-    const [stateNewTask,setStateNewTask] = useState(false)
-
-    let handleNewTask = () => {
-        setStateNewTask(true)
-    }
-
-    let handleCloseNewTask = () => {
-        setStateNewTask(false)
-    }
+    
     
     return(
         <div>

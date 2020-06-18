@@ -9,7 +9,7 @@ const TaskDescription = props => {
         <Modal isOpen={isOpen} style={{marginTop:"150px"}}>
                 <ModalHeader>
                     Create new task
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"  style={{marginLeft: "280px" }} onClick={onChance}>
+                    <button type="button" className="close" data-dismiss="modal" aria-label="Close"  style={{marginLeft: "280px" }} onClick={onChance}>
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </ModalHeader>

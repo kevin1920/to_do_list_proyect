@@ -3,27 +3,37 @@ import {Modal,ModalHeader,ModalBody} from 'reactstrap'
 
 const AssignTask = props => {
 
-    let {isOpen,onChance,assign,list} = props
+    let {isOpen,onChance,assign} = props
+
+    let list = JSON.parse(localStorage.getItem('listAssign'))
+    let listTask = JSON.parse(localStorage.getItem('list'))
 
     let fillList = (user,index) => {
         return(
             <tr key={index}>
                 <td>{user.name}</td>
-                <td><button type="button" class="btn btn-primary">Assign task</button></td>
+                <td><button type="button" className="btn btn-primary" onClick={() => assignUser(index)}>Assign task</button></td>
             </tr>
         )
+    }
+
+    let assignUser = index => {
+        let inCharge = list[index].name
+        listTask[assign].inCharge = inCharge
+        localStorage.setItem('list',JSON.stringify(listTask))
+        onChance()
     }
 
     return(
         <Modal isOpen={isOpen} style={{marginTop:"150px"}}>
                 <ModalHeader>
                     Create new task
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"  style={{marginLeft: "280px" }} onClick={onChance}>
+                    <button type="button" className="close" data-dismiss="modal" aria-label="Close"  style={{marginLeft: "280px" }} onClick={onChance}>
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </ModalHeader>
                 <ModalBody>
-                    <table class="table">
+                    <table className="table">
                         <thead>
                             <tr>
                             <th scope="col">Username</th>
