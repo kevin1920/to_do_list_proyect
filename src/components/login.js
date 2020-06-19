@@ -34,14 +34,14 @@ const Login = () => {
                 <h1 style={{marginTop:"40px",marginLeft:"240px"}}>Login</h1>
                 <form onSubmit={handleSubmit} style={{margin:"50px",width:"500px",marginTop:"-1px"}}>
                     <div className="form-group">
-                        <label for="username">Username</label>
-                        <input type="text" class="form-control" placeholder="Enter you username" name="txtUsername" onChange={handleChange} value={state.txtUsername}></input>
+                        <label htmlFor="username">Username</label>
+                        <input type="text" className="form-control" placeholder="Enter you username" name="txtUsername" onChange={handleChange} value={state.txtUsername}></input>
                     </div>
                     <div className="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" placeholder="Enter you password" name="txtPassword" onChange={handleChange} value={state.txtPassword} ></input>
+                        <label htmlFor="password">Password</label>
+                        <input type="password" className="form-control" placeholder="Enter you password" name="txtPassword" onChange={handleChange} value={state.txtPassword} ></input>
                     </div>
-                    <button type="submit" class="btn btn-primary">Enter</button>
+                    <button type="submit" className="btn btn-primary">Enter</button>
                 </form>
             </div>
         </div>

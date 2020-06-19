@@ -69,7 +69,7 @@ const FormNewProject = props => {
                     <div className="form-group">
                         <label htmlFor="invite a user">Add a user to your project</label>
                         <input type="text" className="form-control" placeholder="Enter a username" name="txtInvite" onChange={handleChange} value={state.txtInvite}></input>
-                        <button type="button" class="btn btn-primary" onClick={handleAdd}>Add</button>
+                        <button type="button" className="btn btn-primary" onClick={handleAdd}>Add</button>
                     </div>
                     <button type="submit" className="btn btn-primary">Create</button>
                 </form>

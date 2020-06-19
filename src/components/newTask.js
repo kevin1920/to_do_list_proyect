@@ -40,13 +40,13 @@ const NewTask = props => {
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">
                             <label htmlFor="task name">task name</label>
-                            <input type="text" class="form-control" placeholder="Enter the task name" name="txtTaskName" onChange={handleChange} ></input>
+                            <input type="text" className="form-control" placeholder="Enter the task name" name="txtTaskName" onChange={handleChange} ></input>
                         </div>
                         <div className="form-group">
                             <label htmlFor="project description">task description</label>
                             <textarea className="form-control" placeholder="Enter the task description" name="txtDescription" onChange={handleChange}></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Create</button>
+                        <button type="submit" className="btn btn-primary">Create</button>
                     </form>
                 </ModalBody>
             </Modal>
