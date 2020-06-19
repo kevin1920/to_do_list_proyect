@@ -3,14 +3,12 @@ import {Modal,ModalHeader,ModalBody} from 'reactstrap'
 
 const ModifyTask = props => {
 
-    let {isOpen,onChance,task} = props
+    let {isOpen,onChance,task,list} = props
 
     const [state,setState] = useState({
         txtNewTaskName:task.name,
         txtNewDescription:task.description
     })
-
-    let list = JSON.parse(localStorage.getItem('list'))
 
     let handleChance = e => {
         setState({

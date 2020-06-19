@@ -18,7 +18,7 @@ const CreateCard = props => {
                             <p className="card-text text-secondary">
                                 In this card you can create a new project
                             </p>
-                            <button type="button" class="btn btn-primary" onClick={onChange}>Create project</button>
+                            <button type="button" className="btn btn-primary" onClick={onChange}>Create project</button>
                         </div>
                     </div>
                 </div>

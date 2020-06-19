@@ -12,7 +12,6 @@ const Projects = () => {
     let projects = JSON.parse(localStorage.getItem('projects'))
 
     const [stateButton,setStateButton] = useState(false)
-    const [data,setData] = useState(projects)
 
     let handleButton = () => {
         setStateButton(true)
@@ -40,10 +39,10 @@ const Projects = () => {
             <FormNewProject
                 onChange = {handleBtnClose}
                 isOpen = {stateButton}
-                data = {data}
+                data = {projects}
             />
             <Card
-                data = {data}
+                data = {projects}
             />
         </div>
         

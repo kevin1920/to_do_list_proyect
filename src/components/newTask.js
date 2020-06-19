@@ -1,13 +1,13 @@
 import React,{useState} from 'react'
 import {Modal,ModalHeader,ModalBody} from 'reactstrap'
-import { Link } from 'react-router-dom'
 
-const NewTask = () => {
+
+const NewTask = props => {
+
+    let {list,onChange} = props
 
     const [stateModal,setStateModal] = useState(false)
     const [stateForm,setStateForm] = useState({})
-
-    let list = JSON.parse(localStorage.getItem('list'))
 
     let handleChange = e => {
         setStateForm({
@@ -19,10 +19,11 @@ const NewTask = () => {
     let handleSubmit = e => {
         e.preventDefault()
         let newTask = {name:stateForm.txtTaskName,description:stateForm.txtDescription,inCharge:'',complete:false}
-        list.push(newTask)
-        localStorage.setItem('list',JSON.stringify(list))
+        let newList = list
+        newList.push(newTask)
+        localStorage.setItem('list',JSON.stringify(newList))
+        onChange()
         setStateModal(false)
-        window.location.reload(true);
     }
 
     return (
@@ -39,11 +40,11 @@ const NewTask = () => {
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">
                             <label htmlFor="task name">task name</label>
-                            <input type="text" class="form-control" placeholder="Enter the task name" name="txtTaskName" onChange={handleChange} value={stateForm.txtTaskName}></input>
+                            <input type="text" class="form-control" placeholder="Enter the task name" name="txtTaskName" onChange={handleChange} ></input>
                         </div>
                         <div className="form-group">
                             <label htmlFor="project description">task description</label>
-                            <textarea className="form-control" placeholder="Enter the task description" name="txtDescription" onChange={handleChange} value={stateForm.txtDescription}></textarea>
+                            <textarea className="form-control" placeholder="Enter the task description" name="txtDescription" onChange={handleChange}></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">Create</button>
                     </form>

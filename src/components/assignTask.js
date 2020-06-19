@@ -3,10 +3,9 @@ import {Modal,ModalHeader,ModalBody} from 'reactstrap'
 
 const AssignTask = props => {
 
-    let {isOpen,onChance,assign} = props
+    let {isOpen,onChance,assign,listTask} = props
 
     let list = JSON.parse(localStorage.getItem('listAssign'))
-    let listTask = JSON.parse(localStorage.getItem('list'))
 
     let fillList = (user,index) => {
         return(

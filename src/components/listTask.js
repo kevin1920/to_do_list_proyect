@@ -3,11 +3,11 @@ import TaskDescription from './taskDescription'
 import AssignTask from './assignTask'
 import ModifyTask from './modifyTask'
 
-const ListTask = () => {
+const ListTask = props => {
     //localStorage.setItem('list',JSON.stringify([{name:'change the color',description:'the color should be changed',inCharge:'',complete:false},{name:'change the background',description:'the background is very ugly',inCharge:'',complete:false}]))
     //localStorage.setItem('listAssign',JSON.stringify([{name:'Juan'},{name:'Pepito'},{name:'Felipongo'}]))
 
-    let listTask = JSON.parse(localStorage.getItem('list'))
+    let {listTask,onChange} = props
 
     const [stateDetails,setStateDetails] = useState(false)
     const [description,setDescription] = useState(null)
@@ -23,10 +23,10 @@ const ListTask = () => {
                 <th>{task.name}</th>
                 <td><button type="button" className="btn btn-primary" onClick={() => catchDescription(index)}>Details</button></td>
                 <td><button type="button" className="btn btn-primary" onClick={() => catchTaskModify(index)}>Modify</button></td>
-                <td><button type="button" className="btn btn-primary" onClick={() => deleteTask(index)}>Delete</button></td>
                 <td><button type="button" className="btn btn-primary" onClick={() => assignUser(index)}>Assign</button></td>
                 <th>{task.inCharge}</th>
                 <td><input type="checkbox" onChange={e => check(e,index)} defaultChecked={task.complete}/></td>
+                <td><button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={() => deleteTask(index)}><span aria-hidden="true">&times;</span></button></td>
             </tr>
         )
     }
@@ -42,8 +42,7 @@ const ListTask = () => {
     let deleteTask = index => {
         listTask.splice(index,1)
         localStorage.setItem('list',JSON.stringify(listTask))
-        window.location.reload(true);
-
+        onChange()
     }
 
     
@@ -56,7 +55,6 @@ const ListTask = () => {
     let catchTaskModify = index => {
         setStateModify(true)
         setTaskModify({name:listTask[index].name,description:listTask[index].description,index:index})
-        setIndexAssign(index)
     }
 
     let assignUser = index => {
@@ -86,14 +84,14 @@ const ListTask = () => {
                         <th scope="col">Name</th>
                         <th scope="col">Description</th>
                         <th scope="col">Modify task</th>
-                        <th scope="col">Delete task</th>
                         <th scope="col">Assign task</th>
                         <th scope="col">Person in charge</th>
                         <th scope="col">Complete task</th>
+                        <th scope="col">Delete task</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {listTask.map(renderList)}
+                        {listTask.map((task,index)=> renderList(task,index))}
                            
                     </tbody>
                 </table>
@@ -107,11 +105,13 @@ const ListTask = () => {
                 isOpen = {stateAssign}
                 onChance = {handleCloseAssign}
                 assign = {indexAssign}
+                listTask = {listTask}
             />
             <ModifyTask
                 isOpen = {stateModify}
                 onChance = {handleCloseModify}
                 task = {taskModify}
+                list = {listTask}
             />
         </div>
     )
