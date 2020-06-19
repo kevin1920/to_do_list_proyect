@@ -4,9 +4,13 @@ import {Modal,ModalHeader,ModalBody} from 'reactstrap'
 
 const FormNewProject = props => {
 
-    let {isOpen,onChange,data} = props
+    let {isOpen,onChange,data,name} = props
     const [state,setState] = useState({})
     const [users,setUsers] = useState([])
+
+    let listUsers = JSON.parse(localStorage.getItem('users'))
+
+    console.log(users)
 
     let handleChange = e => {
         setState({
@@ -16,24 +20,30 @@ const FormNewProject = props => {
     }
 
     let handleSubmit = e => {
-        
         e.preventDefault()
-        let projectNew = {name:state.txtProjectName,description:state.txtDescription}
+        let usersList = users
+        usersList.push(name)
+        let projectNew = {name:state.txtProjectName,description:state.txtDescription,users:usersList,tasks:[]}
         let list = data
         list.push(projectNew)
         localStorage.setItem('projects',JSON.stringify(list))
+        setUsers([])
         onChange()
-        console.log(users)
     }
 
     let handleAdd = () => {
         let list = users
-        list.push(state.txtInvite)
-        setUsers(list)
-        setState({
-            ...state,
-            txtInvite: ''
+        listUsers.map(user => {
+            if(user.username === state.txtInvite){
+                list.push(state.txtInvite)
+                setUsers(list)
+                setState({
+                    ...state,
+                    txtInvite: ''
+                })
+            }
         })
+        //alert
     }
 
     return (

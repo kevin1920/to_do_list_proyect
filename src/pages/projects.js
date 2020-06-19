@@ -9,7 +9,8 @@ import '../components/styles/projects.css'
 const Projects = () => {
    
     //localStorage.setItem('projects',JSON.stringify([{name:'calculator',description:'a calculator is going to be built'},{name:'the users list',description:'a list is going to be built'}]))
-    let projects = JSON.parse(localStorage.getItem('projects'))
+    let projects = JSON.parse(localStorage.getItem('projects')) || []
+    let name = JSON.parse(localStorage.getItem('name'))
 
     const [stateButton,setStateButton] = useState(false)
 
@@ -31,7 +32,7 @@ const Projects = () => {
             <div style={{height: `150px`, overflow: `hidden`}} ><svg viewBox="0 0 500 150" preserveAspectRatio="none" style={{height: `100%`, width: `100%`}}><path d="M-37.02,203.57 C42.55,6.23 416.70,140.43 492.32,14.10 L500.22,0.30 L-3.15,-6.60 Z" style={{stroke: `none`, fill: `#fff`}}></path></svg></div>
 
             <Welcome
-                name = "Armando"
+                name = {name}
             />
             <CreateCard
                 onChange = {handleButton}
@@ -40,9 +41,11 @@ const Projects = () => {
                 onChange = {handleBtnClose}
                 isOpen = {stateButton}
                 data = {projects}
+                name = {name}
             />
             <Card
                 data = {projects}
+                name = {name}
             />
         </div>
         

@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from 'react'
+import React, {useState} from 'react'
 import TaskDescription from './taskDescription'
 import AssignTask from './assignTask'
 import ModifyTask from './modifyTask'
@@ -7,7 +7,9 @@ const ListTask = props => {
     //localStorage.setItem('list',JSON.stringify([{name:'change the color',description:'the color should be changed',inCharge:'',complete:false},{name:'change the background',description:'the background is very ugly',inCharge:'',complete:false}]))
     //localStorage.setItem('listAssign',JSON.stringify([{name:'Juan'},{name:'Pepito'},{name:'Felipongo'}]))
 
-    let {listTask,onChange} = props
+    let {list,onChange,indexProject} = props
+
+    let listTask = list[indexProject].tasks
 
     const [stateDetails,setStateDetails] = useState(false)
     const [description,setDescription] = useState(null)
@@ -16,6 +18,7 @@ const ListTask = props => {
     const [stateModify,setStateModify] = useState(false)
     const [taskModify,setTaskModify] = useState({})
 
+    
     
     let renderList = (task,index) => {
         return(
@@ -34,14 +37,14 @@ const ListTask = props => {
     
     let check = (e,index) => {
         
-        listTask[index].complete= e.target.checked
-        localStorage.setItem('list',JSON.stringify(listTask))
+        list[indexProject].tasks[index].complete = e.target.checked
+        localStorage.setItem('projects',JSON.stringify(list))
          
     }
 
     let deleteTask = index => {
-        listTask.splice(index,1)
-        localStorage.setItem('list',JSON.stringify(listTask))
+        list[indexProject].tasks.splice(index,1)
+        localStorage.setItem('projects',JSON.stringify(list))
         onChange()
     }
 
@@ -56,7 +59,7 @@ const ListTask = props => {
         setStateModify(true)
         setTaskModify({name:listTask[index].name,description:listTask[index].description,index:index})
     }
-
+    
     let assignUser = index => {
         setStateAssign(true)
         setIndexAssign(index)
@@ -105,13 +108,15 @@ const ListTask = props => {
                 isOpen = {stateAssign}
                 onChance = {handleCloseAssign}
                 assign = {indexAssign}
-                listTask = {listTask}
+                list = {list}
+                indexProject = {indexProject}
             />
             <ModifyTask
                 isOpen = {stateModify}
                 onChance = {handleCloseModify}
                 task = {taskModify}
-                list = {listTask}
+                list = {list}
+                indexProject = {indexProject}
             />
         </div>
     )

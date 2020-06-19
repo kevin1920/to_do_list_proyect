@@ -7,13 +7,14 @@ import NewTask from '../components/newTask'
 
 const Board = () => {
 
-    let list = JSON.parse(localStorage.getItem('list'))
-    const [data,setData] = useState(list)
-
-    console.log('hola')
+    let indexProject = JSON.parse(localStorage.getItem('indexProject'))
+    let projects = JSON.parse(localStorage.getItem('projects'))
+    let name = JSON.parse(localStorage.getItem('name'))
+    
+    const [data,setData] = useState(projects)
 
     let handleData = () => {
-        let updatedList = JSON.parse(localStorage.getItem('list'))
+        let updatedList = JSON.parse(localStorage.getItem('projects'))
         setData(updatedList)
     }
     
@@ -23,15 +24,17 @@ const Board = () => {
             <style>{"body { background-color: #282c34; }"}</style>
             </Helmet>
             <Nav
-                name="Augustus"
+                name={name}
             />
             <ListTask
-                listTask = {data}
+                list = {data}
                 onChange = {handleData}
+                indexProject = {indexProject}
             />
             <NewTask
                 list = {data}
                 onChange = {handleData}
+                indexProject = {indexProject}
             />   
         </div> 
     )

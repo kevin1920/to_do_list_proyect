@@ -3,12 +3,9 @@ import {Modal,ModalHeader,ModalBody} from 'reactstrap'
 
 const ModifyTask = props => {
 
-    let {isOpen,onChance,task,list} = props
+    let {isOpen,onChance,task,list,indexProject} = props
 
-    const [state,setState] = useState({
-        txtNewTaskName:task.name,
-        txtNewDescription:task.description
-    })
+    const [state,setState] = useState({})
 
     let handleChance = e => {
         setState({
@@ -19,9 +16,22 @@ const ModifyTask = props => {
 
     let handleSubmit = e => {
         e.preventDefault()
-        list[task.index].name = state.txtNewTaskName
-        list[task.index].description = state.txtNewDescription
-        localStorage.setItem('list',JSON.stringify(list))
+        if(state.txtNewTaskName && state.txtNewDescription){
+            list[indexProject].tasks[task.index].name = state.txtNewTaskName
+            list[indexProject].tasks[task.index].description = state.txtNewDescription
+            localStorage.setItem('projects',JSON.stringify(list))
+        }else{
+            if(state.txtNewTaskName){
+                list[indexProject].tasks[task.index].name = state.txtNewTaskName
+                list[indexProject].tasks[task.index].description = task.description
+                localStorage.setItem('projects',JSON.stringify(list))
+            }else{
+                list[indexProject].tasks[task.index].name = task.name
+                list[indexProject].tasks[task.index].description = state.txtNewDescription
+                localStorage.setItem('projects',JSON.stringify(list))
+            }
+        }
+        setState({})
         onChance()
     }
 

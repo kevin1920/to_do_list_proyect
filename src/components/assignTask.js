@@ -3,23 +3,23 @@ import {Modal,ModalHeader,ModalBody} from 'reactstrap'
 
 const AssignTask = props => {
 
-    let {isOpen,onChance,assign,listTask} = props
-
-    let list = JSON.parse(localStorage.getItem('listAssign'))
+    let {isOpen,onChance,assign,list,indexProject} = props
+    
+    let listUsers = list[indexProject].users
 
     let fillList = (user,index) => {
         return(
             <tr key={index}>
-                <td>{user.name}</td>
+                <td>{user}</td>
                 <td><button type="button" className="btn btn-primary" onClick={() => assignUser(index)}>Assign task</button></td>
             </tr>
         )
     }
 
     let assignUser = index => {
-        let inCharge = list[index].name
-        listTask[assign].inCharge = inCharge
-        localStorage.setItem('list',JSON.stringify(listTask))
+        let inCharge = listUsers[index]
+        list[indexProject].tasks[assign].inCharge = inCharge
+        localStorage.setItem('projects',JSON.stringify(list))
         onChance()
     }
 
@@ -40,7 +40,7 @@ const AssignTask = props => {
                             </tr>
                         </thead>
                         <tbody>
-                            {list.map(fillList)}
+                            {listUsers.map(fillList)}
                         </tbody>
                     </table>
                 </ModalBody>

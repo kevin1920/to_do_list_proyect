@@ -1,13 +1,21 @@
 import React, {useState} from 'react'
 import {Helmet} from 'react-helmet'
+import users from '../config'
 
 const Login = () => {
+
+    localStorage.setItem('users',JSON.stringify(users))
 
     const [state, setState] = useState({})
 
     let handleSubmit = e => {
         e.preventDefault()
-        console.log(state)
+        users.map(x => {
+            if(x.username === state.txtUsername && x.password === state.txtPassword){
+                localStorage.setItem('name',JSON.stringify(x.username))
+                document.location.href='/projects'
+            }
+        })
     }
 
     let handleChange = e => {

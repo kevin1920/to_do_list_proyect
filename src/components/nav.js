@@ -14,7 +14,7 @@ const Nav = props => {
                     <h1>To do List</h1>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link" href="/projects" style={{fontSize:"25px",color:"black"}}>Sign Out</a>
+                    <a className="nav-link" href="/" style={{fontSize:"25px",color:"black"}}>Sign Out</a>
                 </li>
             </ul>
         </div>

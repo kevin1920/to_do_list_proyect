@@ -14,7 +14,7 @@ const CreateCard = props => {
                     <div className="card" style={{width:"18rem",borderRadius:"10px"}}>
                         <img src={AddImage} className="card-img-top"/>
                         <div className="card-body text-center">
-                            <h4 className="card-tittle">Card Title</h4>
+                            <h4 className="card-tittle">New project</h4>
                             <p className="card-text text-secondary">
                                 In this card you can create a new project
                             </p>

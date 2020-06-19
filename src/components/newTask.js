@@ -4,7 +4,7 @@ import {Modal,ModalHeader,ModalBody} from 'reactstrap'
 
 const NewTask = props => {
 
-    let {list,onChange} = props
+    let {list,onChange,indexProject} = props
 
     const [stateModal,setStateModal] = useState(false)
     const [stateForm,setStateForm] = useState({})
@@ -20,8 +20,8 @@ const NewTask = props => {
         e.preventDefault()
         let newTask = {name:stateForm.txtTaskName,description:stateForm.txtDescription,inCharge:'',complete:false}
         let newList = list
-        newList.push(newTask)
-        localStorage.setItem('list',JSON.stringify(newList))
+        newList[indexProject].tasks.push(newTask)
+        localStorage.setItem('projects',JSON.stringify(newList))
         onChange()
         setStateModal(false)
     }
