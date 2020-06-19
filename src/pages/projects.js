@@ -8,7 +8,6 @@ import '../components/styles/projects.css'
 
 const Projects = () => {
    
-    //localStorage.setItem('projects',JSON.stringify([{name:'calculator',description:'a calculator is going to be built'},{name:'the users list',description:'a list is going to be built'}]))
     let projects = JSON.parse(localStorage.getItem('projects')) || []
     let name = JSON.parse(localStorage.getItem('name'))
 

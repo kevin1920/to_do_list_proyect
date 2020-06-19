@@ -4,9 +4,7 @@ import AssignTask from './assignTask'
 import ModifyTask from './modifyTask'
 
 const ListTask = props => {
-    //localStorage.setItem('list',JSON.stringify([{name:'change the color',description:'the color should be changed',inCharge:'',complete:false},{name:'change the background',description:'the background is very ugly',inCharge:'',complete:false}]))
-    //localStorage.setItem('listAssign',JSON.stringify([{name:'Juan'},{name:'Pepito'},{name:'Felipongo'}]))
-
+    
     let {list,onChange,indexProject} = props
 
     let listTask = list[indexProject].tasks
